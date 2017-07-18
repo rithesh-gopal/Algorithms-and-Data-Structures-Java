@@ -7,6 +7,7 @@ import com.rithesh.algorithms.ds.interfaces.IStack;
 
 public class StackMain {
 
+	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);        
