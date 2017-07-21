@@ -76,6 +76,7 @@ public class LinkedStackImpl<T> implements IStack<T>{
 		return false;
 	}
 
+	
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
