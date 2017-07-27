@@ -15,8 +15,8 @@ public class LinkedStackImpl<T> implements IStack<T>{
 	
 	private static class Node<T>{
 		private T value = null;
-		private Node<T> above = null;
-		private Node<T> below = null;
+		private Node<T> next = null;
+		private Node<T> previous = null;
 		
 		private Node(T value){
 			this.value = value;
@@ -24,15 +24,14 @@ public class LinkedStackImpl<T> implements IStack<T>{
 		
 		@Override
 		public String toString(){
-			return "value="+ value +" above = "+((above!=null) ? above.value : "Null") +
-					" below = "+((below!=null) ? below.value : "Null");
+			return "value="+ value +" above = "+((next!=null) ? next.value : "Null") +
+					" below = "+((previous!=null) ? previous.value : "Null");
 		}
 		
 	}
 
 	@Override
 	public boolean push(T value) {
-		
 		return push(new Node(value));
 	}
 	
@@ -42,8 +41,8 @@ public class LinkedStackImpl<T> implements IStack<T>{
 		else{
 			Node<T> oldTop = top;
 			top = node;
-			top.below = oldTop;
-			oldTop.above = top;
+			top.previous = oldTop;
+			oldTop.next = top;
 		}
 		size++;
 		return true;
@@ -54,8 +53,14 @@ public class LinkedStackImpl<T> implements IStack<T>{
 
 	@Override
 	public T pop() {
-		// TODO Auto-generated method stub
-		return null;
+		if(top == null) return null;
+		Node<T> nodeToRemove = top;
+		top = nodeToRemove.previous;
+		if(top!=null)
+			top.next = null;
+		size--;
+		T value = nodeToRemove.value;
+		return value;
 	}
 
 	@Override
@@ -77,10 +82,9 @@ public class LinkedStackImpl<T> implements IStack<T>{
 	}
 
 	
-	@Override
+	@Override 
 	public void clear() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
