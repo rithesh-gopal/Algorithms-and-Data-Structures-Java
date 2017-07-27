@@ -48,8 +48,6 @@ public class LinkedStackImpl<T> implements IStack<T>{
 		return true;
 	}
 	
-	
-	
 
 	@Override
 	public T pop() {
